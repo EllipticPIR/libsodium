@@ -338,7 +338,7 @@ ge25519_frombytes_negate_vartime(ge25519_p3 *h, const unsigned char *s)
  r = p + q
  */
 
-static void
+void
 ge25519_madd(ge25519_p1p1 *r, const ge25519_p3 *p, const ge25519_precomp *q)
 {
     fe25519 t0;
@@ -359,7 +359,7 @@ ge25519_madd(ge25519_p1p1 *r, const ge25519_p3 *p, const ge25519_precomp *q)
  r = p - q
  */
 
-static void
+void
 ge25519_msub(ge25519_p1p1 *r, const ge25519_p3 *p, const ge25519_precomp *q)
 {
     fe25519 t0;
