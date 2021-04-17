@@ -1,7 +1,7 @@
 #include <string.h>
 
-#include "private/common.h"
-#include "utils.h"
+#include "common.h"
+#include "../utils.h"
 
 /*
  h = 0
