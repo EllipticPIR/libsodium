@@ -62,7 +62,14 @@ SODIUM_EXPORT = \
 	sodium/randombytes_sysrandom.h \
 	sodium/runtime.h \
 	sodium/utils.h \
-	sodium/private/ed25519_ref10.h
+	sodium/private/chacha20_ietf_ext.h \
+	sodium/private/common.h \
+	sodium/private/ed25519_ref10.h \
+	sodium/private/ed25519_ref10_fe_25_5.h \
+	sodium/private/ed25519_ref10_fe_51.h \
+	sodium/private/implementations.h \
+	sodium/private/mutex.h \
+	sodium/private/sse2_64_32.h
 
 EXTRA_SRC = $(SODIUM_EXPORT) \
 	sodium/version.h.in
