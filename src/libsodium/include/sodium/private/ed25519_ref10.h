@@ -73,6 +73,8 @@ typedef struct {
     fe25519 T2d;
 } ge25519_cached;
 
+void ge25519_p3_0(ge25519_p3 *h);
+
 void ge25519_tobytes(unsigned char *s, const ge25519_p2 *h);
 
 void ge25519_p3_tobytes(unsigned char *s, const ge25519_p3 *h);

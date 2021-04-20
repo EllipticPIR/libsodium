@@ -429,7 +429,7 @@ ge25519_p2_dbl(ge25519_p1p1 *r, const ge25519_p2 *p)
     fe25519_sub(r->T, r->T, r->Z);
 }
 
-static void
+void
 ge25519_p3_0(ge25519_p3 *h)
 {
     fe25519_0(h->X);
