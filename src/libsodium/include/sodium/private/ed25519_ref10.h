@@ -73,61 +73,86 @@ typedef struct {
     fe25519 T2d;
 } ge25519_cached;
 
+SODIUM_EXPORT
 void ge25519_p3_0(ge25519_p3 *h);
 
+SODIUM_EXPORT
 void ge25519_tobytes(unsigned char *s, const ge25519_p2 *h);
 
+SODIUM_EXPORT
 void ge25519_p3_tobytes(unsigned char *s, const ge25519_p3 *h);
 
+SODIUM_EXPORT
 int ge25519_frombytes(ge25519_p3 *h, const unsigned char *s);
 
+SODIUM_EXPORT
 int ge25519_frombytes_negate_vartime(ge25519_p3 *h, const unsigned char *s);
 
+SODIUM_EXPORT
 void ge25519_p3_to_cached(ge25519_cached *r, const ge25519_p3 *p);
 
+SODIUM_EXPORT
 void ge25519_p3_to_precomp(ge25519_precomp *pi, const ge25519_p3 *p);
 
+SODIUM_EXPORT
 void ge25519_p1p1_to_p2(ge25519_p2 *r, const ge25519_p1p1 *p);
 
+SODIUM_EXPORT
 void ge25519_p1p1_to_p3(ge25519_p3 *r, const ge25519_p1p1 *p);
 
+SODIUM_EXPORT
 void ge25519_add(ge25519_p1p1 *r, const ge25519_p3 *p, const ge25519_cached *q);
 
+SODIUM_EXPORT
 void ge25519_madd(ge25519_p1p1 *r, const ge25519_p3 *p, const ge25519_precomp *q);
 
+SODIUM_EXPORT
 void ge25519_sub(ge25519_p1p1 *r, const ge25519_p3 *p, const ge25519_cached *q);
 
+SODIUM_EXPORT
 void ge25519_msub(ge25519_p1p1 *r, const ge25519_p3 *p, const ge25519_precomp *q);
 
+SODIUM_EXPORT
 void ge25519_scalarmult_base(ge25519_p3 *h, const unsigned char *a);
 
+SODIUM_EXPORT
 void ge25519_double_scalarmult_vartime(ge25519_p2 *r, const unsigned char *a,
                                        const ge25519_p3 *A,
                                        const unsigned char *b);
 
+SODIUM_EXPORT
 void ge25519_scalarmult(ge25519_p3 *h, const unsigned char *a,
                         const ge25519_p3 *p);
 
+SODIUM_EXPORT
 int ge25519_is_canonical(const unsigned char *s);
 
+SODIUM_EXPORT
 int ge25519_is_on_curve(const ge25519_p3 *p);
 
+SODIUM_EXPORT
 int ge25519_is_on_main_subgroup(const ge25519_p3 *p);
 
+SODIUM_EXPORT
 int ge25519_has_small_order(const unsigned char s[32]);
 
+SODIUM_EXPORT
 void ge25519_from_uniform(unsigned char s[32], const unsigned char r[32]);
 
+SODIUM_EXPORT
 void ge25519_from_hash(unsigned char s[32], const unsigned char h[64]);
 
 /*
  Ristretto group
  */
 
+SODIUM_EXPORT
 int ristretto255_frombytes(ge25519_p3 *h, const unsigned char *s);
 
+SODIUM_EXPORT
 void ristretto255_p3_tobytes(unsigned char *s, const ge25519_p3 *h);
 
+SODIUM_EXPORT
 void ristretto255_from_hash(unsigned char s[32], const unsigned char h[64]);
 
 /*
@@ -135,16 +160,21 @@ void ristretto255_from_hash(unsigned char s[32], const unsigned char h[64]);
  where l = 2^252 + 27742317777372353535851937790883648493.
  */
 
+SODIUM_EXPORT
 void sc25519_invert(unsigned char recip[32], const unsigned char s[32]);
 
+SODIUM_EXPORT
 void sc25519_reduce(unsigned char s[64]);
 
+SODIUM_EXPORT
 void sc25519_mul(unsigned char s[32], const unsigned char a[32],
                  const unsigned char b[32]);
 
+SODIUM_EXPORT
 void sc25519_muladd(unsigned char s[32], const unsigned char a[32],
                     const unsigned char b[32], const unsigned char c[32]);
 
+SODIUM_EXPORT
 int sc25519_is_canonical(const unsigned char s[32]);
 
 #endif
