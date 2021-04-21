@@ -1,8 +1,8 @@
-libsodium (1.0.18-1+ellipticpir0) focal; urgency=medium
+libsodium (1.0.18+ellipticpir0-0) focal; urgency=medium
 
   * Initial release.
 
- -- Masahiko Hyuga <mail@mhyuga.jp>  Wed, 21 Apr 2021 15:45:17 +0900
+ -- Vis Virial <visvirial@gmail.com>  Wed, 21 Apr 2021 15:45:17 +0900
 
 libsodium (1.0.18-1) unstable; urgency=medium
 
