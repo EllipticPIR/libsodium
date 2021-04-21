@@ -1,0 +1,21 @@
+name: ellipticpir-libsodium
+base: core20
+version: '1.0.18+ellipticpir0'
+summary: A modern and easy-to-use crypto library customized for EllpticPIR
+description: |
+  libsodium ported for EllipticPIR.
+
+grade: stable
+confinement: strict
+
+parts:
+  ellipticpir-libsodium:
+    plugin: autotools
+    source-type: git
+    source: https://github.com/EllipticPIR/libsodium.git
+    autotools-configure-parameters:
+      - --with-pic
+    build-packages:
+      - g++
+      - make
+
