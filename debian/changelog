@@ -1,3 +1,9 @@
+libsodium (1.0.18+ellipticpir1-0) groovy; urgency=medium
+
+  * Add SODIUM_EXPORT.
+
+ -- Vis Virial <visvirial@gmail.com>  Wed, 21 Apr 2021 17:51:25 +0900
+
 libsodium (1.0.18+ellipticpir0-0) focal; urgency=medium
 
   * Initial release.
