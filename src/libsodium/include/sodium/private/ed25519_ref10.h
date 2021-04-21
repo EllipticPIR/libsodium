@@ -142,6 +142,26 @@ void ge25519_from_uniform(unsigned char s[32], const unsigned char r[32]);
 SODIUM_EXPORT
 void ge25519_from_hash(unsigned char s[32], const unsigned char h[64]);
 
+// Compute p3 + cached => p3.
+SODIUM_EXPORT
+void ge25519_add_p3_cached(ge25519_p3 *r, const ge25519_p3 *a, const ge25519_cached *cached);
+
+// Compute p3 + precomp => p3.
+SODIUM_EXPORT
+void ge25519_add_p3_precomp(ge25519_p3 *r, const ge25519_p3 *a, const ge25519_precomp *precomp);
+
+// Compute p3 + p3 => p3.
+SODIUM_EXPORT
+void ge25519_add_p3_p3(ge25519_p3 *r, const ge25519_p3 *a, const ge25519_p3 *b);
+
+// Compute p3 - cached => p3.
+SODIUM_EXPORT
+void ge25519_sub_p3_cached(ge25519_p3 *r, const ge25519_p3 *a, const ge25519_cached *cached);
+
+// Compute p3 - p3 => p3.
+SODIUM_EXPORT
+void ge25519_sub_p3_p3(ge25519_p3 *r, const ge25519_p3 *a, const ge25519_p3 *b);
+
 /*
  Ristretto group
  */
@@ -159,6 +179,9 @@ void ristretto255_from_hash(unsigned char s[32], const unsigned char h[64]);
  The set of scalars is \Z/l
  where l = 2^252 + 27742317777372353535851937790883648493.
  */
+
+SODIUM_EXPORT
+void sc25519_load_uint64(unsigned char *sc, uint64_t n);
 
 SODIUM_EXPORT
 void sc25519_invert(unsigned char recip[32], const unsigned char s[32]);
