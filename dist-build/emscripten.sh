@@ -76,62 +76,63 @@ if [ "$DIST" = yes ]; then
       "${PREFIX}/lib/libsodium.a" -o "${outFile}" || exit 1
   }
   emmake make $MAKE_FLAGS install || exit 1
-  emccLibsodium "${PREFIX}/lib/libsodium.asm.tmp.js" -Oz -s WASM=0 -s RUNNING_JS_OPTS=1
-  emccLibsodium "${PREFIX}/lib/libsodium.wasm.tmp.js" -O3 -s WASM=1
+  #emccLibsodium "${PREFIX}/lib/libsodium.asm.tmp.js" -Oz -s WASM=0 -s RUNNING_JS_OPTS=1
+  #emccLibsodium "${PREFIX}/lib/libsodium.wasm.tmp.js" -O3 -s WASM=1
+  emccLibsodium "${PREFIX}/lib/libsodium.bc" -O3 -s WASM=1 -r
 
-  cat > "${PREFIX}/lib/libsodium.js" <<- EOM
-    var Module;
-    if (typeof Module === 'undefined') {
-      Module = {};
-    }
-    var root = Module;
-    if (typeof root['sodium'] !== 'object') {
-      if (typeof global === 'object') {
-        root = global;
-      } else if (typeof window === 'object') {
-        root = window;
-      }
-    }
-    if (typeof root['sodium'] === 'object' && typeof root['sodium']['totalMemory'] === 'number') {
-      Module['TOTAL_MEMORY'] = root['sodium']['totalMemory'];
-    }
-    var _Module = Module;
-    Module.ready = new Promise(function(resolve, reject) {
-      var Module = _Module;
-      Module.onAbort = reject;
-      Module.print = function(what) {
-        typeof(console) !== 'undefined' && console.log(what);
-      }
-      Module.printErr = function(what) {
-        typeof(console) !== 'undefined' && console.warn(what);
-      }
-      Module.onRuntimeInitialized = function() {
-        try {
-          /* Test arbitrary wasm function */
-          Module._crypto_secretbox_keybytes();
-          resolve();
-        } catch (err) {
-          reject(err);
-        }
-      };
-      Module.useBackupModule = function() {
-        var Module = _Module;
-        Object.keys(Module).forEach(function(k) {
-          if (k !== 'getRandomValue') {
-            delete Module[k];
-          }
-        });
-        $(cat "${PREFIX}/lib/libsodium.asm.tmp.js" | sed 's|use asm||g')
-      };
-      $(cat "${PREFIX}/lib/libsodium.wasm.tmp.js")
-    }).catch(function() {
-      _Module.useBackupModule();
-    });
-EOM
-
-  rm "${PREFIX}/lib/libsodium.asm.tmp.js" "${PREFIX}/lib/libsodium.wasm.tmp.js"
-  touch -r "${PREFIX}/lib/libsodium.js" "$DONE_FILE"
-  ls -l "${PREFIX}/lib/libsodium.js"
+#  cat > "${PREFIX}/lib/libsodium.js" <<- EOM
+#    var Module;
+#    if (typeof Module === 'undefined') {
+#      Module = {};
+#    }
+#    var root = Module;
+#    if (typeof root['sodium'] !== 'object') {
+#      if (typeof global === 'object') {
+#        root = global;
+#      } else if (typeof window === 'object') {
+#        root = window;
+#      }
+#    }
+#    if (typeof root['sodium'] === 'object' && typeof root['sodium']['totalMemory'] === 'number') {
+#      Module['TOTAL_MEMORY'] = root['sodium']['totalMemory'];
+#    }
+#    var _Module = Module;
+#    Module.ready = new Promise(function(resolve, reject) {
+#      var Module = _Module;
+#      Module.onAbort = reject;
+#      Module.print = function(what) {
+#        typeof(console) !== 'undefined' && console.log(what);
+#      }
+#      Module.printErr = function(what) {
+#        typeof(console) !== 'undefined' && console.warn(what);
+#      }
+#      Module.onRuntimeInitialized = function() {
+#        try {
+#          /* Test arbitrary wasm function */
+#          Module._crypto_secretbox_keybytes();
+#          resolve();
+#        } catch (err) {
+#          reject(err);
+#        }
+#      };
+#      Module.useBackupModule = function() {
+#        var Module = _Module;
+#        Object.keys(Module).forEach(function(k) {
+#          if (k !== 'getRandomValue') {
+#            delete Module[k];
+#          }
+#        });
+#        $(cat "${PREFIX}/lib/libsodium.asm.tmp.js" | sed 's|use asm||g')
+#      };
+#      $(cat "${PREFIX}/lib/libsodium.wasm.tmp.js")
+#    }).catch(function() {
+#      _Module.useBackupModule();
+#    });
+#EOM
+#
+#  rm "${PREFIX}/lib/libsodium.asm.tmp.js" "${PREFIX}/lib/libsodium.wasm.tmp.js"
+#  touch -r "${PREFIX}/lib/libsodium.js" "$DONE_FILE"
+#  ls -l "${PREFIX}/lib/libsodium.js"
   exit 0
 fi
 
