@@ -113,7 +113,7 @@ randombytes_stir(void)
         }
     });
 #endif
-throw 'No secure random number generator found';
+EM_ASM({ throw 'No secure random number generator found'; });
 #endif
 }
 
