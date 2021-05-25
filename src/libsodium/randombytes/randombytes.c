@@ -84,6 +84,7 @@ randombytes_stir(void)
         implementation->stir();
     }
 #else
+#if 0
     EM_ASM({
         if (Module.getRandomValue === undefined) {
             try {
@@ -111,6 +112,8 @@ randombytes_stir(void)
             }
         }
     });
+#endif
+throw 'No secure random number generator found';
 #endif
 }
 
